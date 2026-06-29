@@ -1,0 +1,5 @@
+flask
+flash_sqlalchey
+flask_login
+gunicorn
+dotenv

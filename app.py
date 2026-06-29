@@ -4,6 +4,10 @@ from datetime import datetime
 from flask_login import LoginManager,UserMixin,login_user,login_required,logout_user,current_user
 from werkzeug.security import generate_password_hash,check_password_hash
 import random
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = '12345vchvcjhb'
@@ -13,7 +17,7 @@ login_manger.init_app(app)
 login_manger.login_view = "login"
 
 # Your database models and routes here...
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///unitedbank.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQLALCHEMY_DATABASE_URI")
 
 def generate_account_number():
     return str(random.randint(1000000000,9999999999))
